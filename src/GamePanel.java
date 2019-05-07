@@ -89,51 +89,121 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 
 	@Override
-	public void keyPressed(KeyEvent arg0) {
+	public void keyPressed(KeyEvent arg01) {
 		// TODO Auto-generated method stub
 	
-		if (arg0.getKeyCode()==KeyEvent.VK_ENTER) {
+		if (arg01.getKeyCode()==KeyEvent.VK_ENTER) {
 		    if (currentState == END) {
 		        currentState = MENU;
 		    } else {
 		        currentState++;
 		    }
-		   
-		
-		if (arg0.getKeyCode()==KeyEvent.VK_UP) {
+		}
+		if (arg01.getKeyCode()==KeyEvent.VK_UP) {
 		    System.out.println("up");
+		    if (rocky.y>0) {
+		    	rocky.up();
+				  rocky.say();
+		    }
 		    
-		    rocky.up();
-		    System.out.println(x);
+		    
 		}
-		if (arg0.getKeyCode()==KeyEvent.VK_DOWN) {
+		if (arg01.getKeyCode()==KeyEvent.VK_DOWN) {
 		    System.out.println();
-		    rocky.down();
-		    System.out.println("Down");
-		}
-		if (arg0.getKeyCode()==KeyEvent.VK_LEFT) {
+		    if (rocky.y<650) {
+		    	rocky.down();
+			    System.out.println("Down");
+		    }
+		}		
+		if (arg01.getKeyCode()==KeyEvent.VK_LEFT) {
 		    System.out.println("Left");
+		    if(rocky.x>0) {
 		    rocky.left();
 		    System.out.println("Down");
+		    }
 		}
-		if (arg0.getKeyCode()==KeyEvent.VK_RIGHT) {
+		if (arg01.getKeyCode()==KeyEvent.VK_RIGHT) {
 		    System.out.println("Right");
-		    rocky.right();
+		    if(rocky.x<430) {
+		    	 rocky.right();
 		    System.out.println("Down");
+		    }
+		   
 		}
-	}}
-
+	
+	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
+	if (arg0.getKeyCode()==KeyEvent.VK_UP) {
+	    System.out.println("up");
+	    if (rocky.y>0) {
+	    	rocky.up();
+			  rocky.say();
+	    }
+	    
+	    
+	}
+	if (arg0.getKeyCode()==KeyEvent.VK_DOWN) {
+	    System.out.println();
+	    if (rocky.y<650) {
+	    	rocky.down();
+		    System.out.println("Down");
+	    }
+	}		
+	if (arg0.getKeyCode()==KeyEvent.VK_LEFT) {
+	    System.out.println("Left");
+	    if(rocky.x>0) {
+	    rocky.left();
+	    System.out.println("Down");
+	    }
+	}
+	if (arg0.getKeyCode()==KeyEvent.VK_RIGHT) {
+	    System.out.println("Right");
+	    if(rocky.x<430) {
+	    	 rocky.right();
+	    System.out.println("Down");
+	    }
+	   
+	}
 	}
 
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		if (arg0.getKeyCode()==KeyEvent.VK_UP) {
+		    System.out.println("up");
+		    if (rocky.y>0) {
+		    	rocky.up();
+				  rocky.say();
+		    }
+		    
+		    
+		}
+		if (arg0.getKeyCode()==KeyEvent.VK_DOWN) {
+		    System.out.println();
+		    if (rocky.y<650) {
+		    	rocky.down();
+			    System.out.println("Down");
+		    }
+		}		
+		if (arg0.getKeyCode()==KeyEvent.VK_LEFT) {
+		    System.out.println("Left");
+		    if(rocky.x>0) {
+		    rocky.left();
+		    System.out.println("Down");
+		    }
+		}
+		if (arg0.getKeyCode()==KeyEvent.VK_RIGHT) {
+		    System.out.println("Right");
+		    if(rocky.x<430) {
+		    	 rocky.right();
+		    System.out.println("Down");
+		    }
+		   
+		}
 	}
 }

@@ -29,5 +29,8 @@ public void right() {
 	// TODO Auto-generated method stub
 	x+=speed;
 }
+public void say() {
+	System.out.println(x+ " " + ""+ y);
+}
 
 }
