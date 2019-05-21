@@ -12,6 +12,9 @@ void draw(Graphics g) {
 		System.out.println(x + " " + y + " " + width + " " +height);
 	g.fillRect(x, y, width, height);
 }
+void update() {
+	
+}
 
 public void up() {
 	// TODO Auto-generated method stub
