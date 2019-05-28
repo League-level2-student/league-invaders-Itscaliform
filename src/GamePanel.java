@@ -7,24 +7,34 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
-	
+	public static BufferedImage image;
+	public static boolean needImage = true;
+	public static boolean gotImage = false;	
 	  final int MENU = 0;
 	    final int GAME = 1;
 	    Timer frameDraw;
+	    Timer AlienSpawn;
 	    final int END = 2;
 	    Rocketship rocky= new Rocketship(250,500,50,50);
 	    ObjectManager Manage= new ObjectManager(rocky);
 	    int currentState = MENU;
 	Font titleFont;
 	GamePanel(){
+		
 		 titleFont = new Font("Arial", Font.PLAIN, 48);
 		   frameDraw = new Timer(1000/60,this);
 		    frameDraw.start();
+		    
+		    if (needImage) {
+		        loadImage ("space.png");
+		    }
 	}
 	
 	
@@ -61,7 +71,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	 }
 	void  drawGameState(Graphics g) { 
 		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+		if (gotImage) {
+			g.drawImage(image, 0,0,500, 700, null);
+		} else {
+			g.setColor(Color.BLUE);
+			g.fillRect(0,0,1000,1000);
+		}
 		Manage.draw(g);
 	}
 	void drawEndState(Graphics g)  {
@@ -82,8 +97,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if(currentState == MENU){
 		    updateMenuState();
 		}else if(currentState == GAME){
+			
 		    updateGameState();
 		}else if(currentState == END){
+			
 		    updateEndState();
 		}
 		
@@ -97,6 +114,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (arg01.getKeyCode()==KeyEvent.VK_ENTER) {
 		    if (currentState == END) {
 		        currentState = MENU;
+		        
 		    } else {
 		        currentState++;
 		    }
@@ -208,4 +226,20 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		   
 		}
 	}
+	void loadImage(String imageFile) {
+	    if (needImage) {
+	        try {
+	            image = ImageIO.read(this.getClass().getResourceAsStream(imageFile));
+		    gotImage = true;
+	        } catch (Exception e) {
+	            
+	        }
+	        needImage = false;
+	    }
+	}
+	void alienSpawn() {
+		AlienSpawn = new Timer(1000 , Manage);
+	    AlienSpawn.start();
+	    }
+	
 }
