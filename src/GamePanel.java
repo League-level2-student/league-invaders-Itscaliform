@@ -114,9 +114,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (arg01.getKeyCode()==KeyEvent.VK_ENTER) {
 		    if (currentState == END) {
 		        currentState = MENU;
+		       
 		        
 		    } else {
 		        currentState++;
+		        startGame();
+				
 		    }
 		}
 		if (arg01.getKeyCode()==KeyEvent.VK_UP) {
@@ -128,6 +131,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		    
 		    
 		}
+		
 		if (arg01.getKeyCode()==KeyEvent.VK_DOWN) {
 		    System.out.println();
 		    if (rocky.y<650) {
@@ -135,6 +139,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			    System.out.println("Down");
 		    }
 		}		
+		
+		if (arg01.getKeyCode()==KeyEvent.VK_S) {
+			Manage.addProjectile(rocky.getProjectile());
+			}
+		
 		if (arg01.getKeyCode()==KeyEvent.VK_LEFT) {
 		    System.out.println("Left");
 		    if(rocky.x>0) {
@@ -148,6 +157,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		    	 rocky.right();
 		    System.out.println("Down");
 		    }
+		    
+		    
+		    
 		   
 		}
 	
@@ -157,74 +169,18 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 
-	if (arg0.getKeyCode()==KeyEvent.VK_UP) {
-	    System.out.println("up");
-	    if (rocky.y>0) {
-	    	rocky.up();
-			  rocky.say();
-	    }
-	    
-	    
-	}
-	if (arg0.getKeyCode()==KeyEvent.VK_DOWN) {
-	    System.out.println();
-	    if (rocky.y<650) {
-	    	rocky.down();
-		    System.out.println("Down");
-	    }
-	}		
-	if (arg0.getKeyCode()==KeyEvent.VK_LEFT) {
-	    System.out.println("Left");
-	    if(rocky.x>0) {
-	    rocky.left();
-	    System.out.println("Down");
-	    }
-	}
-	if (arg0.getKeyCode()==KeyEvent.VK_RIGHT) {
-	    System.out.println("Right");
-	    if(rocky.x<430) {
-	    	 rocky.right();
-	    System.out.println("Down");
-	    }
+
 	   
-	}
+
 	}
 
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		if (arg0.getKeyCode()==KeyEvent.VK_UP) {
-		    System.out.println("up");
-		    if (rocky.y>0) {
-		    	rocky.up();
-				  rocky.say();
-		    }
-		    
-		    
-		}
-		if (arg0.getKeyCode()==KeyEvent.VK_DOWN) {
-		    System.out.println();
-		    if (rocky.y<650) {
-		    	rocky.down();
-			    System.out.println("Down");
-		    }
-		}		
-		if (arg0.getKeyCode()==KeyEvent.VK_LEFT) {
-		    System.out.println("Left");
-		    if(rocky.x>0) {
-		    rocky.left();
-		    System.out.println("Down");
-		    }
-		}
-		if (arg0.getKeyCode()==KeyEvent.VK_RIGHT) {
-		    System.out.println("Right");
-		    if(rocky.x<430) {
-		    	 rocky.right();
-		    System.out.println("Down");
-		    }
+	
 		   
-		}
+		
 	}
 	void loadImage(String imageFile) {
 	    if (needImage) {
@@ -237,7 +193,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	        needImage = false;
 	    }
 	}
-	void alienSpawn() {
+	void startGame() {
 		AlienSpawn = new Timer(1000 , Manage);
 	    AlienSpawn.start();
 	    }
