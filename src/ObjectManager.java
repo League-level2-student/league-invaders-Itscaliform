@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ ArrayList <Projectile> Projectile = new ArrayList <Projectile>();
 
 Random random= new Random();
 
+
 ObjectManager(Rocketship bobby){
 	this.bobby=bobby;
 }
@@ -24,6 +26,10 @@ void addAlien() {
 }
 
 void update() {
+	
+	checkCollision();
+	purgeObjects();
+	
 	bobby.update();
 	for (int i = 0; i < Projectile.size(); i++) {
 		
@@ -35,7 +41,9 @@ void update() {
 		aliens.get(i).update();
 		
 	}
+  
 	
+   
 }
 void draw(Graphics g){
 	bobby.draw(g);
@@ -68,6 +76,14 @@ void purgeObjects() {
 			
 		}
 }
+}
+void checkCollision() {
+
+	for (int i = 0; i < aliens.size(); i++) {
+		
+		
+		
+	}
 }
 @Override
 public void actionPerformed(ActionEvent arg0) {
