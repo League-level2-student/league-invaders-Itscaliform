@@ -55,6 +55,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 	void  updateGameState() { 
 		Manage.update();
+		if(rocky.isActive == false) {
+			currentState= END;
+			
+		}
 	}
 	void  updateEndState()  { 
 		
@@ -112,14 +116,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		// TODO Auto-generated method stub
 	
 		if (arg01.getKeyCode()==KeyEvent.VK_ENTER) {
-		    if (currentState == END) {
-		        currentState = MENU;
-		       
-		        
-		    } else {
+		    if (currentState == MENU ) {
 		        currentState++;
 		        startGame();
-				
+		        
+		    }else if(currentState == GAME) {
+		    	currentState++;
+		    	
+		    }
+		    else {
+		    	currentState= MENU;
 		    }
 		}
 		if (arg01.getKeyCode()==KeyEvent.VK_UP) {
@@ -196,6 +202,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	void startGame() {
 		AlienSpawn = new Timer(1000 , Manage);
 	    AlienSpawn.start();
+	    rocky.isActive = true;
+
 	    }
 	
 }

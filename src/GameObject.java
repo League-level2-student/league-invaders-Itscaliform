@@ -12,7 +12,7 @@ public class GameObject {
 	 
 	 GameObject(int x,int y,int width,int height){
 		 
-		 Rectangle CollisionBox= new Rectangle(x,y,width,height);
+		CollisionBox= new Rectangle(x,y,width,height);
 		this.height=height;
 		this.width=width;
 		this.x=x;

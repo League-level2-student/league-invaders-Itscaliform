@@ -27,7 +27,7 @@ void draw(Graphics g) {
 	
 }
 void update() {
-	
+	super.update();
 }
 
 public void up() {

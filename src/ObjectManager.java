@@ -26,23 +26,25 @@ void addAlien() {
 }
 
 void update() {
-	
-	checkCollision();
-	purgeObjects();
-	
+	System.out.println(aliens);
+
 	bobby.update();
 	for (int i = 0; i < Projectile.size(); i++) {
 		
 		Projectile.get(i).update();
 		
+		
 	}
 	for (int i = 0; i < aliens.size(); i++) {
-		
+		System.out.println(aliens.get(i));
 		aliens.get(i).update();
+		
 		
 	}
   
 	
+	checkCollision();
+	purgeObjects();
    
 }
 void draw(Graphics g){
@@ -75,12 +77,27 @@ void purgeObjects() {
 			aliens.remove(i);
 			
 		}
+		
+		
 }
 }
 void checkCollision() {
 
 	for (int i = 0; i < aliens.size(); i++) {
 		
+		if (aliens.get(i).CollisionBox.intersects(bobby.CollisionBox)) {
+			aliens.get(i).isActive = false;
+			bobby.isActive = false;
+		}
+		for (int f=0; f<Projectile.size(); f++) {
+			if (aliens.get(i).CollisionBox.intersects(Projectile.get(f).CollisionBox)) {
+				aliens.get(i).isActive = false;
+				Projectile.get(f).isActive = false;
+			}
+			
+		}
+		
+			
 		
 		
 	}
