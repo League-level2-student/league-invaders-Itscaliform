@@ -55,6 +55,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 	void  updateGameState() { 
 		Manage.update();
+		
 		if(rocky.isActive == false) {
 			currentState= END;
 			
@@ -70,13 +71,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		 g.setFont(titleFont);
 		 g.setColor(Color.YELLOW);
 		 g.drawString("League Invaders", 20, 120);
-		 g.drawString("Press ENTER to start", 20, 200);
-		 g.drawString("Press SPACE for instructions", 20, 400);
+		 g.drawString("Press ENTER to ", 20, 400);
+		 g.drawString("start", 20, 480);
+		// g.drawString("Press SPACE for instructions", 20, 400);
 	 }
 	void  drawGameState(Graphics g) { 
-		g.setColor(Color.BLACK);
 		if (gotImage) {
 			g.drawImage(image, 0,0,500, 700, null);
+			g.setColor(Color.WHITE);
+			g.setFont(titleFont);
+			g.drawString("score:"+ Manage.score, 20, 50);
 		} else {
 			g.setColor(Color.BLUE);
 			g.fillRect(0,0,1000,1000);
@@ -88,7 +92,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
 		 g.setFont(titleFont);
 		 g.setColor(Color.black);
-		 g.drawString("Game Over>", 20, 120);
+		 g.drawString("Game Over", 20, 80);
+		 g.drawString("Click Enter to try ", 20, 400);
+		 g.drawString("again", 20, 460);
 	}
 
 
@@ -200,9 +206,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	    }
 	}
 	void startGame() {
+		Timer frameDraw;
+	    Timer AlienSpawn;
+	    rocky= new Rocketship(250,500,50,50);
+	    rocky.isActive = true;
+	    Manage= new ObjectManager(rocky);
 		AlienSpawn = new Timer(1000 , Manage);
 	    AlienSpawn.start();
-	    rocky.isActive = true;
+	    
+	    
 
 	    }
 	
